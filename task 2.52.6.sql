@@ -37,7 +37,7 @@ select * from actor;
 ##678 are a bit out of my league to understand what the author wanted 
 
 
-##lab2
+##lab2.6
 ##1
 SELECT MAX(a.first_name), a.last_name,COUNT(DISTINCT a.last_name)
 FROM actor AS a
@@ -47,7 +47,39 @@ SELECT last_name, COUNT(last_name) AS number_of_times_repeated
 FROM actor
 GROUP BY last_name
 HAVING number_of_times_repeated > 1;
+
 ##q3
+
+select distinct(staff_id), count(rental_id)
+from rental group by rental_id;
+
+-- q4
+
+-- Using the film table, find out how many films were released each year.
+
+select distinct(release_year), count(film_id)from film group by release_year;
+
+-- Using the film table, find out for each rating how many films were there.
+
+select distinct(rating), count(film_id)from film group by rating;
+
+
+-- What is the mean length of the film for each rating type. Round off the average lengths to two decimal places
+
+select distinct(rating), round(avg(length),2)from film group by rating;
+
+-- Which kind of movies (rating) have a mean duration of more than two hours?
+
+select distinct(rating), round(avg(length),2) 
+from film
+group by rating
+having  round(avg(length),2)>120;
+
+-- Rank films by length (filter out the rows that have nulls or 0s in length column).
+-- In your output, only select the columns title, length, and the rank.
+
+select title , length ,  RANK() OVER(ORDER BY length DESC) as ranking
+ from film;
 
 
 
