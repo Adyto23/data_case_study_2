@@ -28,7 +28,24 @@ SELECT * FROM film ORDER BY length DESC;
 
 SELECT * FROM film WHERE special_features LIKE '%Behind the Scenes%';
 
+
+
+select * from actor;
+
+## lab 
+
 ##678 are a bit out of my league to understand what the author wanted 
 
+##lab2
+##1
+SELECT MAX(a.first_name), a.last_name,COUNT(DISTINCT a.last_name)
+FROM actor AS a
+GROUP BY a.last_name;
+##q2
+SELECT last_name, COUNT(last_name) AS number_of_times_repeated
+FROM actor
+GROUP BY last_name
+HAVING number_of_times_repeated > 1;
+##q3
 
 
