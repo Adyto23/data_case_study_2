@@ -70,11 +70,24 @@ join
 
 -- Is "Academy Dinosaur" available for rent from Store 1?
 
+select a.title, a.store_id, a.inventory_id from rental as r 
+join
+(select distinct(title), store_id, i.inventory_id from film as f 
+join inventory as i on  f.film_id=i.film_id
+having title='ACADEMY DINOSAUR'and store_id=1) a on r.inventory_id=a.inventory_id;
+
 
 -- Get all pairs of actors that worked together.
 
+select  c.actor1, c.fn1, c.ln1, c.actor2, c.fn2, c.ln2, fc.film_id from film_actor as fc
+join
+(select distinct(b.actor_id) as actor1, b.first_name as fn1, b.last_name as ln1, a2.actor_id as actor2, a2.first_name as fn2, a2.last_name as ln2 from actor as a2
+join 
+(select a1.actor_id, a1.first_name, a1.last_name from actor as a1 )b
+having b.actor_id<>a2.actor_id) c where c.actor1=fc.actor_id;
 
 -- Get all pairs of customers that have rented the same film more than 3 times.
+
 
 
 -- For each film, list actor that has acted in more films.

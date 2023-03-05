@@ -30,7 +30,28 @@ SELECT * FROM film WHERE special_features LIKE '%Behind the Scenes%';
 
 
 
-select * from actor;
+-- Since how many days has the company been operating (check DATEDIFF() function)?
+
+select TIMESTAMPDIFF(day, min(create_date), max(last_update)) AS DateDifference from customer;
+
+-- Show rental info with additional columns month and weekday. Get 20 results.
+ 
+ select * from rental; 
+ 
+ SELECT *, DATE_FORMAT(rental_date, "%%M") AS "month", DATE_FORMAT(rental_date, "%%W") AS "weekday", 
+CASE
+WHEN (DATE_FORMAT(rental_date, "%%W") = "Saturday") OR (DATE_FORMAT(rental_date, "%%W") = "Sunday") THEN "Weekend"
+ELSE "Workday"
+END AS   "day type" 
+FROM SAKILA.RENTAL
+LIMIT 20;
+
+-- Add an additional column day_type with values 'weekend' and 'workday' depending on the rental day of the week.
+
+-- done 
+
+-- Get release years.
+select film_id,title,release_year from film;
 
 ## lab 
 
