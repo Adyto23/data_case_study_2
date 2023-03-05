@@ -70,7 +70,7 @@ join
 
 -- Is "Academy Dinosaur" available for rent from Store 1?
 
-select a.title, a.store_id, a.inventory_id from rental as r 
+select distinct(a.inventory_id), a.title, a.store_id from rental as r 
 join
 (select distinct(title), store_id, i.inventory_id from film as f 
 join inventory as i on  f.film_id=i.film_id
