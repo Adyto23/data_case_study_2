@@ -84,7 +84,15 @@ join
 (select distinct(b.actor_id) as actor1, b.first_name as fn1, b.last_name as ln1, a2.actor_id as actor2, a2.first_name as fn2, a2.last_name as ln2 from actor as a2
 join 
 (select a1.actor_id, a1.first_name, a1.last_name from actor as a1 )b
-having b.actor_id<>a2.actor_id) c where c.actor1=fc.actor_id;
+having b.actor_id<>a2.actor_id) c where c.actor1=fc.actor_id and fc.film_id="1";
+-- not sure 
+
+select distinct(fc2.film_id), a.actor1 , fc2.actor_id AS actor2 from film_actor fc2
+join 
+(select actor_id as actor1 from film_actor fc1 where film_id="1") a
+where  a.actor1<>fc2.actor_id ;
+
+-- more correct , yet get the right names 
 
 -- Get all pairs of customers that have rented the same film more than 3 times.
 
