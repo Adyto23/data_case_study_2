@@ -83,10 +83,4 @@ select distinct(customer_id) ,avg(amount) as avarege from payment
 group by customer_id
 having avg(amount) > (select avg(amount) from payment); 
 
-SELECT payment.customer_id
-    FROM payment
-    GROUP BY payment.customer_id
-    HAVING AVG(payment.amount) > (
-        SELECT AVG(amount)
-        FROM payment)
 
